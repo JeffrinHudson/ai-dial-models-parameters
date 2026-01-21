@@ -1,14 +1,20 @@
 from task.app.main import run
 
-# TODO:
-#  Try the `temperature` parameter that controls the randomness of the output. It's a parameter for balancing creativity
-#        and determinism. Range: 0.0 to 2.0, Default: 1.0
-#  User massage: Describe the sound that the color purple makes when it's angry
+# Try several temperature values in the valid range (0.0 to 1.0)
+temperatures = [0.0, 0.5, 1.0]
 
+for temp in temperatures:
+    print(f"\n--- Testing temperature={temp} ---\n")
+    run(
+        deployment_name='gpt-4o',
+        temperature=temp,
+        print_only_content=True,
+    )
+
+# (Optional) Try an out-of-range value (2.1) to see what happens
+print("\n--- Testing temperature=2.1 (optional, may cause error or fallback to max allowed) ---\n")
 run(
     deployment_name='gpt-4o',
+    temperature=2.1,
     print_only_content=True,
-    # TODO:
-    #  Use `temperature` parameter with value in range from 0.0 to 1.0!
-    #  (Optional) Use `temperature` parameter with value 2.1 and check what happens
 )
